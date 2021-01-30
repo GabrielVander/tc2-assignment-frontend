@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CustomerService} from '../../services/customer/customer.service';
 
 @Component({
   selector: 'app-customer',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private customerService: CustomerService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  showModal(): void {
+    this.customerService
+      .toggleRegisterCustomerModal();
   }
 
 }

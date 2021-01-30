@@ -1,1 +1,13 @@
-<p>customer works!</p>
+<div nz-col>
+  <div nz-row nzJustify="center" [nzGutter]="[10, 10]">
+    <h1>Customers</h1>
+  </div>
+  <div nz-row nzJustify="center" [nzGutter]="[10, 10]">
+    <button nz-button (click)="showModal()" nzType="primary">Register new customer</button>
+  </div>
+  <app-register-customer></app-register-customer>
+  <nz-divider></nz-divider>
+  <div nz-row nzJustify="center" [nzGutter]="[10, 10]">
+    <app-customer-table></app-customer-table>
+  </div>
+</div>
