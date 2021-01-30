@@ -15,7 +15,7 @@
   <tbody>
   <tr *ngFor="let data of nzTable.data">
     <td>{{ data.name }}</td>
-    <td>{{ data.cpf }}</td>
+    <td>{{ data.cpf | cpf }}</td>
     <td>{{ data._animals.length }}</td>
     <td>
       <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data._id)">Delete</a>

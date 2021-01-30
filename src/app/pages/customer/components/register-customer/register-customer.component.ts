@@ -9,18 +9,18 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class RegisterCustomerComponent implements OnInit {
   isVisible: boolean;
   isRegistering = false;
-  validateForm!: FormGroup;
+  formGroup!: FormGroup;
 
   constructor(private customerService: CustomerService, private formBuilder: FormBuilder) {
     customerService.registerCustomerModalIsVisible.subscribe(value => this.isVisible = value);
   }
 
   handleOk(): void {
-    for (const i of Object.keys(this.validateForm.controls)) {
-      this.validateForm.controls[i].markAsDirty();
-      this.validateForm.controls[i].updateValueAndValidity();
+    for (const i of Object.keys(this.formGroup.controls)) {
+      this.formGroup.controls[i].markAsDirty();
+      this.formGroup.controls[i].updateValueAndValidity();
     }
-    if (this.validateForm.valid) {
+    if (this.formGroup.valid) {
       this.registerCustomer();
     }
   }
@@ -30,7 +30,7 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.validateForm = this.formBuilder.group({
+    this.formGroup = this.formBuilder.group({
       name: [null, [Validators.required]],
       cpf: [null, [Validators.required]],
     });
@@ -40,12 +40,12 @@ export class RegisterCustomerComponent implements OnInit {
     this.customerService
       .toggleLoadingTable();
     const customer: Customer = {
-      name: this.validateForm.controls.name.value,
-      cpf: this.validateForm.controls.cpf.value,
+      name: this.formGroup.controls.name.value,
+      cpf: this.formGroup.controls.cpf.value,
     };
     this.customerService.registerCustomer(customer)
       .then(() => {
-        this.validateForm.reset();
+        this.formGroup.reset();
         this.toggleIsRegistering();
         this.customerService.updateCustomerList();
         this.customerService.toggleRegisterCustomerModal();

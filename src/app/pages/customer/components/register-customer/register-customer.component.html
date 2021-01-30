@@ -1,7 +1,7 @@
 <nz-modal [(nzVisible)]="isVisible" nzTitle="Register" [nzCancelDisabled]="isRegistering"
           (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
   <ng-container *nzModalContent>
-    <form nz-form [formGroup]="validateForm">
+    <form nz-form [formGroup]="formGroup">
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">Name</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please type a name">
@@ -11,7 +11,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="cpf" nzRequired>CPF</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please type a CPF">
-          <input nz-input id="cpf" formControlName="cpf"/>
+          <input [value]="formGroup.get('cpf').value | cpf" nz-input id="cpf" formControlName="cpf"/>
         </nz-form-control>
       </nz-form-item>
     </form>

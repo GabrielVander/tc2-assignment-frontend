@@ -31,13 +31,13 @@ export class CustomerService {
   }
 
   public updateCustomerList(): void {
-    this.toggleLoadingTable();
+    this.$loadingCustomerTable.next(true);
 
     this.http.get<CustomerResponse>(`${API_ENDPOINT}/customer`)
       .toPromise()
       .then(response => {
         this.$customerList.next(response.data);
-        this.toggleLoadingTable();
+        this.$loadingCustomerTable.next(false);
       });
   }
 

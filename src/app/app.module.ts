@@ -28,6 +28,7 @@ import { CustomerComponent } from './pages/customer/customer.component';
 import { OrderComponent } from './pages/order/order.component';
 import { CustomerTableComponent } from './pages/customer/components/customer-table/customer-table.component';
 import { RegisterCustomerComponent } from './pages/customer/components/register-customer/register-customer.component';
+import { CpfPipe } from './pipes/cpf/cpf.pipe';
 
 registerLocaleData(en);
 
@@ -38,7 +39,9 @@ registerLocaleData(en);
     CustomerComponent,
     OrderComponent,
     CustomerTableComponent,
-    RegisterCustomerComponent
+    RegisterCustomerComponent,
+    CpfPipe,
+    CpfPipe
   ],
   imports: [
     BrowserModule,
