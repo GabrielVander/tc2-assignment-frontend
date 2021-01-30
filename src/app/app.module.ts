@@ -16,6 +16,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { GeneralComponent } from './pages/general/general.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { OrderComponent } from './pages/order/order.component';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzCardModule } from 'ng-zorro-antd/card';
 
 registerLocaleData(en);
 
@@ -34,7 +36,9 @@ registerLocaleData(en);
     AppRoutingModule,
     IconsProviderModule,
     NzLayoutModule,
-    NzMenuModule
+    NzMenuModule,
+    NzGridModule,
+    NzCardModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

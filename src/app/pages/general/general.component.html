@@ -1,1 +1,32 @@
-<p>general works!</p>
+<div class="container">
+  <div nz-col class="main-col">
+    <div nz-row class="row" [nzGutter]="[10, 10]">
+      <div nz-col class="col" nzSpan="8">
+        <nz-card>
+          <h2>Total sold</h2>
+          <h1>{{ totalSold | currency }}</h1>
+        </nz-card>
+      </div>
+      <div nz-col class="col" nzSpan="8">
+        <nz-card>
+          <h2>Number of orders</h2>
+          <h1>{{ numberOfOrders }}</h1>
+        </nz-card>
+      </div>
+      <div nz-col class="col" nzSpan="8">
+        <nz-card>
+          <h2>Number of customers</h2>
+          <h1>{{ numberOfCustomers }}</h1>
+        </nz-card>
+      </div>
+    </div>
+    <div nz-row class="row" [nzGutter]="[10, 10]">
+      <div nz-col class="col" nzSpan="8">
+        <nz-card>
+          <h2>Total animals served</h2>
+          <h1>{{ totalAnimalsServed }}</h1>
+        </nz-card>
+      </div>
+    </div>
+  </div>
+</div>
