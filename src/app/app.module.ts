@@ -13,12 +13,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { GeneralComponent } from './pages/general/general.component';
+import { CustomerComponent } from './pages/customer/customer.component';
+import { OrderComponent } from './pages/order/order.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GeneralComponent,
+    CustomerComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
