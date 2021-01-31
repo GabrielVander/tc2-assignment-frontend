@@ -36,4 +36,13 @@ export class AnimalsFormComponent {
       this.formGroup.reset();
     }
   }
+
+  remove(animalToRemove: Animal): void {
+    this.animalsList
+      .next(
+        this.animalsList
+          .getValue()
+          .filter(animal => JSON.stringify(animal) !== JSON.stringify(animalToRemove))
+      );
+  }
 }

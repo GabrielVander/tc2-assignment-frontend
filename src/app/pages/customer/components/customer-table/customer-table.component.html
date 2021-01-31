@@ -1,4 +1,4 @@
-<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" [nzLoading]="loadingTable">
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" [nzShowPagination]="false" [nzLoading]="loadingTable">
   <thead>
   <tr>
     <th nzCustomFilter>
@@ -23,7 +23,7 @@
       </td>
     </tr>
     <tr [nzExpand]="data.expand">
-      <app-animal-table [animals]="data._animals"></app-animal-table>
+      <app-animal-table [animalIds]="data._animals"></app-animal-table>
     </tr>
   </ng-template>
   </tbody>

@@ -1,4 +1,4 @@
-<nz-table #innerTable [nzData]="animals" nzSize="middle">
+<nz-table #innerTable [nzData]="animals.getValue()" [nzLoading]="loading" [nzShowPagination]="false" nzSize="middle">
   <thead>
   <tr>
     <th>Name</th>

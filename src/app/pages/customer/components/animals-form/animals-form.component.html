@@ -54,7 +54,7 @@
   </div>
 </form>
 <div class="search-result-list">
-  <nz-table #basicTable [nzData]="animalsList.getValue()">
+  <nz-table #basicTable [nzData]="animalsList.getValue()" [nzShowPagination]="false">
     <thead>
     <tr>
       <th>Name</th>
@@ -73,7 +73,7 @@
       <td>{{ animal.race }}</td>
       <td>{{ animal.type }}</td>
       <td>
-        <a>Remove</a>
+        <a (click)="remove(animal)">Remove</a>
       </td>
     </tr>
     </tbody>

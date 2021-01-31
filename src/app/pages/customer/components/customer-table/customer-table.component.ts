@@ -46,10 +46,6 @@ export class CustomerTableComponent {
 
   deleteRow(id: string): void {
     this.customerService
-      .deleteCustomer(id)
-      .then(() => {
-        this.customerService
-          .updateCustomerList();
-      });
+      .deleteCustomer(id);
   }
 }

@@ -3,6 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {API_ENDPOINT} from '../../models/Constants';
 import '../../models/CustomerResponse';
+import '../../models/CustomerSingleResponse';
 import '../../models/AnimalSingleResponse';
 import '../../models/Customer';
 import {AnimalService} from '../animal/animal.service';
@@ -69,9 +70,9 @@ export class CustomerService {
       .toPromise();
   }
 
-  public async deleteCustomer(id: string): Promise<CustomerResponse> {
-    return this.http
-      .request<CustomerResponse>(
+  public deleteCustomer(id: string): void {
+    this.http
+      .request(
         'delete',
         `${API_ENDPOINT}/customer`,
         {
@@ -80,6 +81,10 @@ export class CustomerService {
           },
         }
       )
-      .toPromise();
+      .toPromise()
+      .then((response: { status: boolean, data: { _animals: string[] } }) => {
+        response.data._animals.forEach((animalId: string) => this.animalService.deleteById(animalId));
+        this.updateCustomerList();
+      });
   }
 }
