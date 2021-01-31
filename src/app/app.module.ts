@@ -23,12 +23,15 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { GeneralComponent } from './pages/general/general.component';
 import { CustomerComponent } from './pages/customer/customer.component';
 import { OrderComponent } from './pages/order/order.component';
 import { CustomerTableComponent } from './pages/customer/components/customer-table/customer-table.component';
 import { RegisterCustomerComponent } from './pages/customer/components/register-customer/register-customer.component';
 import { CpfPipe } from './pipes/cpf/cpf.pipe';
+import { AnimalsFormComponent } from './pages/customer/components/animals-form/animals-form.component';
 
 registerLocaleData(en);
 
@@ -41,7 +44,7 @@ registerLocaleData(en);
     CustomerTableComponent,
     RegisterCustomerComponent,
     CpfPipe,
-    CpfPipe
+    AnimalsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,9 @@ registerLocaleData(en);
     NzModalModule,
     NzFormModule,
     ReactiveFormsModule,
-    NzPopconfirmModule
+    NzPopconfirmModule,
+    NzTabsModule,
+    NzInputNumberModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

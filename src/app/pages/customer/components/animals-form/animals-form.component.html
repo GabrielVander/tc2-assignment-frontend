@@ -1,0 +1,81 @@
+<form nz-form [formGroup]="formGroup" class="ant-advanced-search-form">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [hidden]="isCollapse">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="name">Name</nz-form-label>
+        <nz-form-control nzErrorTip="Please type a name">
+          <input nz-input formControlName="name" id="animalName"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [hidden]="isCollapse">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="age">Age</nz-form-label>
+        <nz-form-control nzErrorTip="Please insert an age">
+          <nz-input-number formControlName="age" id="age" [nzMin]="0" [nzStep]="1"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="10" [hidden]="isCollapse">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="weight">Weight</nz-form-label>
+        <nz-form-control nzErrorTip="Please insert a weight">
+          <nz-input-number formControlName="weight" id="weight" [nzMin]="0" [nzStep]="0.01"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="7" [hidden]="isCollapse">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="race">Race</nz-form-label>
+        <nz-form-control nzErrorTip="Please type a race">
+          <input nz-input formControlName="race" id="race"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="7" [hidden]="isCollapse">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="type">Type</nz-form-label>
+        <nz-form-control nzErrorTip="Please insert a type">
+          <input nz-input formControlName="type" id="type"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col [nzSpan]="24" class="search-area">
+      <button nz-button [nzType]="'primary'" [disabled]="!formGroup.valid" (click)="add()">Add</button>
+      <a class="collapse" (click)="toggleCollapse()">
+        Collapse
+        <i nz-icon [nzType]="isCollapse ? 'down' : 'up'"></i>
+      </a>
+    </div>
+  </div>
+</form>
+<div class="search-result-list">
+  <nz-table #basicTable [nzData]="animalsList.getValue()">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Weight</th>
+      <th>Race</th>
+      <th>Type</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let animal of basicTable.data">
+      <td>{{ animal.name }}</td>
+      <td>{{ animal.age }}</td>
+      <td>{{ animal.weight }}</td>
+      <td>{{ animal.race }}</td>
+      <td>{{ animal.type }}</td>
+      <td>
+        <a>Remove</a>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

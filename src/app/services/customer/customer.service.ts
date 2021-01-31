@@ -3,7 +3,9 @@ import {BehaviorSubject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {API_ENDPOINT} from '../../models/Constants';
 import '../../models/CustomerResponse';
+import '../../models/AnimalResponse';
 import '../../models/Customer';
+import {AnimalService} from '../animal/animal.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class CustomerService {
   private $registerCustomerModalIsVisible = new BehaviorSubject<boolean>(false);
   private $loadingCustomerTable = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private animalService: AnimalService) {
     this.updateCustomerList();
   }
 
@@ -50,10 +52,19 @@ export class CustomerService {
   }
 
   public async registerCustomer(customer: Customer): Promise<CustomerResponse> {
+    let animals: Animal[];
+
+    if (customer._animals && customer._animals.length !== 0) {
+      animals = await this.animalService.saveAnimals(customer._animals);
+    }
+
     return this.http
       .post<CustomerResponse>(
         `${API_ENDPOINT}/customer`,
-        customer
+        {
+          ...customer,
+          _animals: animals ? animals.map(value => value._id) : [],
+        }
       )
       .toPromise();
   }
