@@ -20,6 +20,8 @@
       <td [(nzExpand)]="data.expand"></td>
       <td>
         <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data._id)">Delete</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="edit(data)">Edit</a>
       </td>
     </tr>
     <tr [nzExpand]="data.expand">

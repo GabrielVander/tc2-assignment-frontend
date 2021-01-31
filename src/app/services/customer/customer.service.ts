@@ -14,6 +14,7 @@ import {AnimalService} from '../animal/animal.service';
 export class CustomerService {
 
   private $customerList = new BehaviorSubject<Customer[]>([]);
+  private $editingCustomer = new BehaviorSubject<Customer>(null);
   private $registerCustomerModalIsVisible = new BehaviorSubject<boolean>(false);
   private $loadingCustomerTable = new BehaviorSubject<boolean>(false);
 
@@ -23,6 +24,10 @@ export class CustomerService {
 
   get customerList(): BehaviorSubject<Customer[]> {
     return this.$customerList;
+  }
+
+  get editingCustomer(): BehaviorSubject<Customer> {
+    return this.$editingCustomer;
   }
 
   get registerCustomerModalIsVisible(): BehaviorSubject<boolean> {
@@ -42,6 +47,10 @@ export class CustomerService {
         this.$customerList.next(response.data);
         this.$loadingCustomerTable.next(false);
       });
+  }
+
+  public setEditingCustomer(customer: Customer): void {
+    this.$editingCustomer.next(customer);
   }
 
   public toggleRegisterCustomerModal(): void {
@@ -84,6 +93,16 @@ export class CustomerService {
       .toPromise()
       .then((response: { status: boolean, data: { _animals: string[] } }) => {
         response.data._animals.forEach((animalId: string) => this.animalService.deleteById(animalId));
+        this.updateCustomerList();
+      });
+  }
+
+  public updateCustomer(customer: Customer): void {
+    this.http
+      .put<CustomerSingleResponse>(`${API_ENDPOINT}/customer`, customer)
+      .toPromise()
+      .then(() => {
+        this.toggleRegisterCustomerModal();
         this.updateCustomerList();
       });
   }

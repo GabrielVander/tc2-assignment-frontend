@@ -48,4 +48,9 @@ export class CustomerTableComponent {
     this.customerService
       .deleteCustomer(id);
   }
+
+  edit(data: Customer): void {
+    this.customerService.toggleRegisterCustomerModal();
+    this.customerService.setEditingCustomer(data);
+  }
 }
