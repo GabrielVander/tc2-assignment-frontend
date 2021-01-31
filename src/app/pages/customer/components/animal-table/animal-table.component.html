@@ -1,0 +1,20 @@
+<nz-table #innerTable [nzData]="animals" nzSize="middle">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Weight</th>
+    <th>Race</th>
+    <th>Type</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let animal of innerTable.data">
+    <td>{{ animal.name }}</td>
+    <td>{{ animal.age }}</td>
+    <td>{{ animal.weight }}</td>
+    <td>{{ animal.race }}</td>
+    <td>{{ animal.type }}</td>
+  </tr>
+  </tbody>
+</nz-table>

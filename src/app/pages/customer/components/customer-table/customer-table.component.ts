@@ -2,6 +2,10 @@ import {Component} from '@angular/core';
 import {CustomerService} from '../../../../services/customer/customer.service';
 import '../../../../models/Customer';
 
+interface ItemData extends Customer {
+  expand: boolean;
+}
+
 @Component({
   selector: 'app-customer-table',
   templateUrl: './customer-table.component.html',
@@ -11,14 +15,17 @@ export class CustomerTableComponent {
   searchValue = '';
   visible = false;
   loadingTable;
-  listOfData: Customer[] = [];
+  listOfData: ItemData[] = [];
   listOfDisplayData = [...this.listOfData];
 
   constructor(private customerService: CustomerService) {
     customerService
       .customerList
       .subscribe(value => {
-        this.listOfData = value;
+        this.listOfData = value.map(customer => ({
+          ...customer,
+          expand: false,
+        }));
         this.listOfDisplayData = this.listOfData;
       });
     customerService

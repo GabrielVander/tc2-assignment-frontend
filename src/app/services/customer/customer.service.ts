@@ -3,7 +3,7 @@ import {BehaviorSubject} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {API_ENDPOINT} from '../../models/Constants';
 import '../../models/CustomerResponse';
-import '../../models/AnimalResponse';
+import '../../models/AnimalSingleResponse';
 import '../../models/Customer';
 import {AnimalService} from '../animal/animal.service';
 
@@ -52,7 +52,7 @@ export class CustomerService {
   }
 
   public async registerCustomer(customer: Customer): Promise<CustomerResponse> {
-    let animals: Animal[];
+    let animals: AnimalSingleResponse[];
 
     if (customer._animals && customer._animals.length !== 0) {
       animals = await this.animalService.saveAnimals(customer._animals);
@@ -63,7 +63,7 @@ export class CustomerService {
         `${API_ENDPOINT}/customer`,
         {
           ...customer,
-          _animals: animals ? animals.map(value => value._id) : [],
+          _animals: animals ? animals.map(value => value.data._id) : [],
         }
       )
       .toPromise();

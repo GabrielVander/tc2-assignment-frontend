@@ -8,19 +8,24 @@
       </nz-filter-trigger>
     </th>
     <th>CPF</th>
-    <th>Number of animals</th>
+    <th>Animals</th>
     <th>Action</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let data of nzTable.data">
-    <td>{{ data.name }}</td>
-    <td>{{ data.cpf | cpf }}</td>
-    <td>{{ data._animals.length }}</td>
-    <td>
-      <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data._id)">Delete</a>
-    </td>
-  </tr>
+  <ng-template ngFor let-data [ngForOf]="nzTable.data">
+    <tr>
+      <td>{{ data.name }}</td>
+      <td>{{ data.cpf | cpf }}</td>
+      <td [(nzExpand)]="data.expand"></td>
+      <td>
+        <a nz-popconfirm nzPopconfirmTitle="Sure to delete?" (nzOnConfirm)="deleteRow(data._id)">Delete</a>
+      </td>
+    </tr>
+    <tr [nzExpand]="data.expand">
+      <app-animal-table [animals]="data._animals"></app-animal-table>
+    </tr>
+  </ng-template>
   </tbody>
 </nz-table>
 <nz-dropdown-menu #menu="nzDropdownMenu">
