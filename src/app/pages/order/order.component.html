@@ -1,1 +1,13 @@
-<p>order works!</p>
+<div nz-col>
+  <div nz-row nzJustify="center" [nzGutter]="[10, 10]">
+    <h1>Orders</h1>
+  </div>
+  <div nz-row nzJustify="center" [nzGutter]="[10, 10]">
+    <button nz-button (click)="showModal()" nzType="primary">New order</button>
+  </div>
+  <app-order-modal></app-order-modal>
+  <nz-divider></nz-divider>
+  <div nz-row nzJustify="center" [nzGutter]="[10, 10]">
+    <app-order-table></app-order-table>
+  </div>
+</div>

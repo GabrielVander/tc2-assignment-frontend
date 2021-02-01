@@ -33,6 +33,8 @@ import { RegisterCustomerComponent } from './pages/customer/components/register-
 import { CpfPipe } from './pipes/cpf/cpf.pipe';
 import { AnimalsFormComponent } from './pages/customer/components/animals-form/animals-form.component';
 import { AnimalTableComponent } from './pages/customer/components/animal-table/animal-table.component';
+import { OrderTableComponent } from './pages/order/components/order-table/order-table.component';
+import { OrderModalComponent } from './pages/order/components/order-modal/order-modal.component';
 
 registerLocaleData(en);
 
@@ -46,7 +48,9 @@ registerLocaleData(en);
     RegisterCustomerComponent,
     CpfPipe,
     AnimalsFormComponent,
-    AnimalTableComponent
+    AnimalTableComponent,
+    OrderTableComponent,
+    OrderModalComponent
   ],
   imports: [
     BrowserModule,

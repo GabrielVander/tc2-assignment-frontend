@@ -1,0 +1,29 @@
+<nz-table #basicTable [nzData]="orderTable" [nzLoading]="loadingTable" [nzTableLayout]="'fixed'"
+          [nzShowPagination]="false">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Timestamp</th>
+    <th>Customer</th>
+    <th>Animals</th>
+    <th>Services</th>
+    <th>Total price</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data._id }}</td>
+    <td>{{ data._createdAt }}</td>
+    <td>
+      <a>Open</a>
+    </td>
+    <td>
+      <a>Open</a>
+    </td>
+    <td>
+      <a>Open</a>
+    </td>
+    <td>{{ data.totalPrice }}</td>
+  </tr>
+  </tbody>
+</nz-table>
